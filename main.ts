@@ -1,5 +1,8 @@
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite, location) {
     info.changeLifeBy(-1)
+    if (info.life() == 0) {
+        game.over(false, effects.clouds)
+    }
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile3`, function (sprite, location) {
     game.over(true, effects.starField)
@@ -28,7 +31,7 @@ beam.setPosition(98, 3)
 scene.cameraFollowSprite(beam)
 controller.moveSprite(beam, 100, 100)
 info.setLife(100)
-info.setScore(10)
+info.setScore(100)
 game.onUpdateInterval(1000, function () {
     info.changeScoreBy(-1)
     if (info.score() == 0) {
